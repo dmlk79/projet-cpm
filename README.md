@@ -70,6 +70,12 @@ source asr_env/bin/activate
 pip install --no-cache-dir -r requirements.txt
 ```
 
+
+## Ajout du folder data dans le projet 
+executer setup_data.sh
+
+
+
 ### Exécution
 
 Pour traiter l'intégralité du corpus (2800 fichiers), calculer les métriques et générer les graphiques d'analyse :
