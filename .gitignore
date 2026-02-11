@@ -1,17 +1,9 @@
-# 1. Environnements virtuels (Spécifique à l'OS, ne JAMAIS commiter)
-asr_env/
-venv/
-env/
-
-# 2. Données, Modèles et Cache (Trop lourd pour GitHub)
+generate_lm_plot.py
 data/
 .cache/
 
-# 3. Logs et exécutions
-logs/
-*.log
+asr_env/
 
-# 4. Fichiers de Cache Python (Inutiles)
 __pycache__/
 *.pyc
 *.pyo
@@ -19,6 +11,6 @@ __pycache__/
 .Python
 
 
-# 5. Fichiers système OS (Mac/Windows)
+
 .DS_Store
 Thumbs.db

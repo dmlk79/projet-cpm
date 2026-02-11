@@ -101,61 +101,116 @@ def plot_with_ci(df_stats, x_col, title, filename, color_no="#4c72b0", color_lm=
 
 def generate_analysis(df):
     """
-    Analyse les résultats bruts, calcule les stats par Bootstrap et génère les graphes.
+    Analyse les résultats bruts, calcule les stats par Bootstrap
+    et génère les 4 graphes demandés.
     """
     PLOTS_DIR.mkdir(exist_ok=True)
-    
-    # Fonction interne pour calculer les stats sur un sous-groupe
+
     def calculate_group_stats(group):
         refs = group['Reference'].tolist()
         hyps_no = group['Hyp_NoLM'].tolist()
         hyps_lm = group['Hyp_LM'].fillna("").tolist()
-        
-        # Appel à evaluation.py pour le Bootstrap
+
         wer_no, low_no, high_no = evaluation.bootstrap_ci(refs, hyps_no, n_boot=1000)
         wer_lm, low_lm, high_lm = evaluation.bootstrap_ci(refs, hyps_lm, n_boot=1000)
-        
+
         return pd.Series({
             'WER_NoLM': wer_no, 'CI_Low_NoLM': low_no, 'CI_High_NoLM': high_no,
             'WER_LM': wer_lm, 'CI_Low_LM': low_lm, 'CI_High_LM': high_lm
         })
 
-    logger.info("--- Début de l'analyse statistique (Bootstrap) ---")
+    logger.info("===== ANALYSE STATISTIQUE =====")
 
-    # 1. ANALYSE DU BRUIT (SNR)
-    # On filtre sur le locuteur 'man' pour avoir une comparaison valide sur tous les niveaux
-    logger.info("Analyse 1/3 : Impact du Bruit (sur locuteur 'man')...")
-    df_snr = df[df['Speaker'] == 'man'].groupby('SNR').apply(calculate_group_stats).reset_index()
-    
-    # Tri logique des SNR (pas alphabétique)
+    # ============================================================
+    # 0) IMPACT DU MODELE DE LANGAGE (SNR35dB, man)
+    # ============================================================
+    logger.info("Analyse 0/4 : Impact du Modèle de Langage")
+
+    df_lm = df[
+        (df['SNR'] == 'SNR35dB') &
+        (df['Speaker'] == 'man')
+    ]
+
+    refs = df_lm['Reference'].tolist()
+    hyps_no = df_lm['Hyp_NoLM'].tolist()
+    hyps_lm = df_lm['Hyp_LM'].fillna("").tolist()
+
+    wer_no, low_no, high_no = evaluation.bootstrap_ci(refs, hyps_no, n_boot=1000)
+    wer_lm, low_lm, high_lm = evaluation.bootstrap_ci(refs, hyps_lm, n_boot=1000)
+
+    df_lm_stats = pd.DataFrame({
+        "Model": ["Greedy (No LM)", "2-gram LM"],
+        "WER": [wer_no, wer_lm],
+        "CI_Low": [low_no, low_lm],
+        "CI_High": [high_no, high_lm]
+    })
+
+    # Plot LM
+    plt.figure(figsize=(8,6))
+    means = df_lm_stats['WER']
+    errors = [
+        means - df_lm_stats['CI_Low'],
+        df_lm_stats['CI_High'] - means
+    ]
+    plt.bar(df_lm_stats['Model'], means, yerr=errors, capsize=6)
+    plt.ylabel("Word Error Rate (%)")
+    plt.title("Impact du Modèle de Langage (SNR35dB, Man)")
+    plt.grid(axis='y', linestyle='--', alpha=0.3)
+    plt.savefig(PLOTS_DIR / "graph0_lm_ci.png", dpi=300, bbox_inches='tight')
+    plt.close()
+
+
+    # ============================================================
+    # 1) IMPACT DU BRUIT (man uniquement)
+    # ============================================================
+    logger.info("Analyse 1/4 : Impact du Bruit")
+
+    df_snr = df[df['Speaker'] == 'man'] \
+        .groupby('SNR') \
+        .apply(calculate_group_stats) \
+        .reset_index()
+
     snr_order = {'SNR05dB': 0, 'SNR15dB': 1, 'SNR25dB': 2, 'SNR35dB': 3}
     df_snr['sort_key'] = df_snr['SNR'].map(snr_order)
     df_snr = df_snr.sort_values('sort_key').drop('sort_key', axis=1)
-    
-    plot_with_ci(df_snr, 'SNR', "Impact du Bruit sur le WER (Locuteur : Man)", "graph1_snr_ci.png")
 
-    # 2. ANALYSE DU LOCUTEUR
-    # On filtre sur SNR35dB car c'est là que tous les locuteurs sont présents
-    logger.info("Analyse 2/3 : Impact du Locuteur (à SNR 35dB)...")
-    df_spk = df[df['SNR'] == 'SNR35dB'].groupby('Speaker').apply(calculate_group_stats).reset_index()
-    plot_with_ci(df_spk, 'Speaker', "Impact du Locuteur (à SNR 35dB)", "graph2_speaker_ci.png")
+    plot_with_ci(df_snr, 'SNR',
+                 "Impact du Bruit sur le WER (Locuteur : Man)",
+                 "graph1_snr_ci.png")
 
-    # 3. ANALYSE DE LA LONGUEUR
-    logger.info("Analyse 3/3 : Impact de la Longueur des séquences...")
-    df_len = df.groupby('Length').apply(calculate_group_stats).reset_index()
-    plot_with_ci(df_len, 'Length', "Impact de la Longueur des séquences", "graph3_length_ci.png")
-    
-    # Sauvegarde des stats pour le rapport LaTeX
-    logger.info("Sauvegarde des tableaux de statistiques...")
-    with open(STATS_CSV, 'w') as f:
-        f.write("# Stats SNR (Man only)\n")
-        df_snr.to_csv(f, index=False)
-        f.write("\n# Stats Speaker (SNR35dB only)\n")
-        df_spk.to_csv(f, index=False)
-        f.write("\n# Stats Length (All)\n")
-        df_len.to_csv(f, index=False)
-    
-    logger.success(f"Statistiques sauvegardées dans {STATS_CSV}")
+
+    # ============================================================
+    # 2) IMPACT DU LOCUTEUR (SNR35dB)
+    # ============================================================
+    logger.info("Analyse 2/4 : Impact du Locuteur")
+
+    df_spk = df[df['SNR'] == 'SNR35dB'] \
+        .groupby('Speaker') \
+        .apply(calculate_group_stats) \
+        .reset_index()
+
+    plot_with_ci(df_spk, 'Speaker',
+                 "Impact du Locuteur (SNR35dB)",
+                 "graph2_speaker_ci.png")
+
+
+    # ============================================================
+    # 3) IMPACT DE LA LONGUEUR (SNR35dB, adultes uniquement)
+    # ============================================================
+    logger.info("Analyse 3/4 : Impact de la Longueur")
+
+    df_len = df[
+        (df['SNR'] == 'SNR35dB') &
+        (df['Speaker'].isin(['man', 'woman']))
+    ].groupby('Length') \
+     .apply(calculate_group_stats) \
+     .reset_index()
+
+    plot_with_ci(df_len, 'Length',
+                 "Impact de la Longueur (SNR35dB, Adultes)",
+                 "graph3_length_ci.png")
+
+    logger.success("Tous les graphes ont été générés.")
 
 def main():
     # --- ETAPE 1 : CHARGEMENT ---

@@ -22,9 +22,10 @@ projet-cpm/
 ├── results_stats.csv    # Résultats consolidés (Moyennes WER et Intervalles de Confiance)
 ├── results_detailed.csv # Base de données complète des 2800 transcriptions brutes
 ├── plots/               # Visualisations scientifiques générées
-│   ├── graph1_snr_ci.png    # Impact du niveau de bruit
+│   ├── graph1_snr_ci.png     # Impact du niveau de bruit
 │   ├── graph2_speaker_ci.png # Performance par type de locuteur
-│   └── graph3_length_ci.png  # Influence de la longueur des séquences
+│   ├── graph3_length_ci.png  # Influence de la longueur des séquences
+│   └── graph_lm_impact.png   # Influence modèle de langage
 ├── src/                 # Cœur logique du système
 │   ├── __init__.py      
 │   ├── config.py        # Gestion du GPU, des chemins et hyperparamètres
@@ -69,6 +70,15 @@ source asr_env/bin/activate
 # Installation des dépendances (sans cache pour optimiser l'espace disque)
 pip install --no-cache-dir -r requirements.txt
 ```
+
+
+### Ajout du folder data contenant lm_data et corpus dans le projet courant
+```bash
+bash setup_data.sh
+
+```
+
+
 
 ### Exécution
 
