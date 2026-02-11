@@ -71,8 +71,11 @@ pip install --no-cache-dir -r requirements.txt
 ```
 
 
-## Ajout du folder data dans le projet 
-executer setup_data.sh
+### Ajout du folder data contenant lm_data et corpus dans le projet courant
+```bash
+bash setup_data.sh
+
+```
 
 
 
