@@ -1,6 +1,6 @@
 # Système ASR Robuste : Évaluation de Wav2Vec 2.0 et Modèles de Langage N-gram
 
-## 🎯 Objectif du Projet
+## Objectif du Projet
 
 Ce projet a été réalisé dans le cadre du **Master 2 IA²VR (Intelligence Artificielle et ses Applications en Vision et Robotique)** à l'Université de Lorraine. L'objectif est d'évaluer la robustesse et les performances d'un système de reconnaissance automatique de la parole (ASR) de pointe face à des contraintes acoustiques et linguistiques réelles.
 
@@ -10,7 +10,7 @@ Le pipeline analyse le modèle **Wav2Vec 2.0 (Base-960h)** de Facebook (Meta AI)
 2. **Variabilité des locuteurs** : Comparaison des performances sur des profils vocaux hétérogènes (hommes, femmes, enfants).
 3. **Correction sémantique** : Quantification du gain de précision (réduction du Word Error Rate) apporté par l'intégration d'un **Modèle de Langage N-gram** via un décodage par Beam Search.
 
-## 📂 Structure du Projet
+## Structure du Projet
 
 L'organisation logicielle est modulaire pour garantir une séparation claire des responsabilités et une portabilité maximale entre différents environnements de calcul.
 
@@ -36,7 +36,7 @@ projet-cpm/
 └── data/                # [IGNORÉ PAR GIT] Corpus audio et Modèle de Langage (.arpa)
 ```
 
-## 📊 Méthodologie Scientifique
+## Méthodologie Scientifique
 
 ### Évaluation du Taux d'Erreur (WER)
 
@@ -53,7 +53,7 @@ Afin de garantir la validité scientifique des conclusions, nous appliquons la m
 
 Cette approche permet de confirmer statistiquement que les écarts de performance observés ne sont pas dus à la variance de l'échantillon mais bien aux caractéristiques intrinsèques du modèle et des données.
 
-## 🚀 Guide de Démarrage
+## Guide de Démarrage
 
 ### Prérequis
 
@@ -78,11 +78,11 @@ Pour traiter l'intégralité du corpus (2800 fichiers), calculer les métriques 
 python main.py
 ```
 
-## 📈 Résultats et Analyse
+## Résultats et Analyse
 
 Les graphiques générés dans le dossier `/plots` mettent en évidence la corrélation inverse entre le SNR et le WER. L'apport du modèle de langage est particulièrement significatif dans les zones de bruit modéré, où les contraintes linguistiques permettent de lever les ambiguïtés phonétiques que le modèle acoustique seul ne peut résoudre.
 
-## 👤 Auteurs
+## Auteurs
 
 - **El Hadji Dame Lo Kaba** - Étudiant Master 2 IA²VR, Université de Lorraine
 - **Salim Fourati** - Étudiant Master 2 IA²VR, Université de Lorraine

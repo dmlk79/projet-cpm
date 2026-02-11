@@ -131,4 +131,4 @@ def batch_transcribe(
     return references, hypotheses
 
 if __name__ == "__main__":
-    print("✅ inference.py - Module de transcription ASR")
+    print("inference.py - Module de transcription ASR")

@@ -16,7 +16,7 @@ def clean_text(text: str) -> str:
 
 def load_audio(wav_path: Path, target_sr: int = 16000) -> Tuple[torch.Tensor, int]:
     """
-    Charge un fichier audio de manière 100% portable et resample avec torchaudio.
+    Charge un fichier audio 
     """
     try:
         # 1. Lecture avec soundfile (Garanti de marcher sur Windows/Mac/Linux sans FFmpeg)
