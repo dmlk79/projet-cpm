@@ -1,0 +1,90 @@
+2026-02-13 17:20:23 | INFO     | config:get_device:30 - GPU détecté: NVIDIA L4
+2026-02-13 17:20:23 | INFO     | config:get_device:31 - CUDA version: 12.8
+2026-02-13 17:20:23 | INFO     | config:get_device:32 - GPU Memory: 23.57 GB
+2026-02-13 17:20:23 | INFO     | config:<module>:58 - Configuration chargée - Device: cuda
+2026-02-13 17:20:28 | INFO     | __main__:main:220 - Chargement des modèles...
+2026-02-13 17:20:28 | INFO     | model_loader:load_model:11 - Chargement du modèle facebook/wav2vec2-base-960h...
+2026-02-13 17:20:31 | INFO     | model_loader:load_decoder:41 - Construction du décodeur (LM=/home/mac/projet-cpm/data/lm_data/lm-data/2-gram.pruned.1e-7.arpa)...
+2026-02-13 17:20:34 | INFO     | __main__:main:226 - Modèle de langage chargé : 2-gram.pruned.1e-7.arpa
+2026-02-13 17:20:34 | INFO     | __main__:main:231 - Scan du dossier /home/mac/projet-cpm/data/corpus/td_corpus_digits_wav...
+2026-02-13 17:20:34 | INFO     | __main__:main:238 - Fichiers trouvés : 2800
+2026-02-13 17:20:34 | INFO     | __main__:main:242 - Démarrage de la transcription...
+2026-02-13 17:23:18 | SUCCESS  | __main__:main:278 - Transcriptions sauvegardées dans /home/mac/projet-cpm/results_detailed.csv
+2026-02-13 17:23:18 | INFO     | __main__:generate_analysis:125 - ===== ANALYSE STATISTIQUE =====
+2026-02-13 17:23:18 | INFO     | __main__:generate_analysis:130 - Analyse 0/4 : Impact du Modèle de Langage
+2026-02-13 17:23:18 | INFO     | evaluation:bootstrap_ci:72 - WER: 17.43% [IC95: 14.60% - 20.45%]
+2026-02-13 17:23:18 | INFO     | evaluation:bootstrap_ci:72 - WER: 16.98% [IC95: 14.08% - 20.07%]
+2026-02-13 17:23:18 | INFO     | __main__:generate_analysis:169 - Analyse 1/4 : Impact du Bruit
+2026-02-13 17:23:18 | INFO     | evaluation:bootstrap_ci:72 - WER: 76.75% [IC95: 72.27% - 80.92%]
+2026-02-13 17:23:18 | INFO     | evaluation:bootstrap_ci:72 - WER: 73.55% [IC95: 68.93% - 77.75%]
+2026-02-13 17:23:18 | INFO     | evaluation:bootstrap_ci:72 - WER: 40.52% [IC95: 36.07% - 45.08%]
+2026-02-13 17:23:18 | INFO     | evaluation:bootstrap_ci:72 - WER: 37.43% [IC95: 32.60% - 41.87%]
+2026-02-13 17:23:18 | INFO     | evaluation:bootstrap_ci:72 - WER: 22.72% [IC95: 19.25% - 26.13%]
+2026-02-13 17:23:18 | INFO     | evaluation:bootstrap_ci:72 - WER: 21.93% [IC95: 18.33% - 25.68%]
+2026-02-13 17:23:18 | INFO     | evaluation:bootstrap_ci:72 - WER: 17.43% [IC95: 14.60% - 20.45%]
+2026-02-13 17:23:18 | INFO     | evaluation:bootstrap_ci:72 - WER: 16.98% [IC95: 14.08% - 20.07%]
+2026-02-13 17:23:19 | SUCCESS  | __main__:plot_with_ci:100 - Graphique généré : /home/mac/projet-cpm/plots/graph1_snr_ci.png
+2026-02-13 17:23:19 | INFO     | __main__:generate_analysis:188 - Analyse 2/4 : Impact du Locuteur
+2026-02-13 17:23:19 | INFO     | evaluation:bootstrap_ci:72 - WER: 32.97% [IC95: 28.60% - 37.05%]
+2026-02-13 17:23:19 | INFO     | evaluation:bootstrap_ci:72 - WER: 29.83% [IC95: 25.35% - 34.12%]
+2026-02-13 17:23:19 | INFO     | evaluation:bootstrap_ci:72 - WER: 37.12% [IC95: 32.88% - 41.92%]
+2026-02-13 17:23:19 | INFO     | evaluation:bootstrap_ci:72 - WER: 34.27% [IC95: 30.23% - 38.98%]
+2026-02-13 17:23:19 | INFO     | evaluation:bootstrap_ci:72 - WER: 17.43% [IC95: 14.60% - 20.45%]
+2026-02-13 17:23:19 | INFO     | evaluation:bootstrap_ci:72 - WER: 16.98% [IC95: 14.08% - 20.07%]
+2026-02-13 17:23:19 | INFO     | evaluation:bootstrap_ci:72 - WER: 17.97% [IC95: 14.66% - 21.63%]
+2026-02-13 17:23:19 | INFO     | evaluation:bootstrap_ci:72 - WER: 17.68% [IC95: 14.02% - 21.47%]
+2026-02-13 17:23:20 | SUCCESS  | __main__:plot_with_ci:100 - Graphique généré : /home/mac/projet-cpm/plots/graph2_speaker_ci.png
+2026-02-13 17:23:20 | INFO     | __main__:generate_analysis:203 - Analyse 3/4 : Impact de la Longueur
+2026-02-13 17:23:20 | INFO     | evaluation:bootstrap_ci:72 - WER: 17.00% [IC95: 13.50% - 20.75%]
+2026-02-13 17:23:20 | INFO     | evaluation:bootstrap_ci:72 - WER: 18.25% [IC95: 14.25% - 22.50%]
+2026-02-13 17:23:20 | INFO     | evaluation:bootstrap_ci:72 - WER: 21.50% [IC95: 17.33% - 25.67%]
+2026-02-13 17:23:20 | INFO     | evaluation:bootstrap_ci:72 - WER: 19.33% [IC95: 15.33% - 23.50%]
+2026-02-13 17:23:20 | INFO     | evaluation:bootstrap_ci:72 - WER: 15.30% [IC95: 12.60% - 18.10%]
+2026-02-13 17:23:20 | INFO     | evaluation:bootstrap_ci:72 - WER: 13.50% [IC95: 10.90% - 16.10%]
+2026-02-13 17:23:20 | SUCCESS  | __main__:plot_with_ci:100 - Graphique généré : /home/mac/projet-cpm/plots/graph3_length_ci.png
+2026-02-13 17:23:20 | SUCCESS  | __main__:generate_analysis:216 - Tous les graphes ont été générés.
+2026-02-13 17:40:25 | INFO     | config:get_device:30 - GPU détecté: NVIDIA L4
+2026-02-13 17:40:25 | INFO     | config:get_device:31 - CUDA version: 12.8
+2026-02-13 17:40:25 | INFO     | config:get_device:32 - GPU Memory: 23.57 GB
+2026-02-13 17:40:25 | INFO     | config:<module>:58 - Configuration chargée - Device: cuda
+2026-02-13 17:40:27 | INFO     | __main__:main:220 - Chargement des modèles...
+2026-02-13 17:40:27 | INFO     | model_loader:load_model:11 - Chargement du modèle facebook/wav2vec2-base-960h...
+2026-02-13 17:40:29 | INFO     | model_loader:load_decoder:41 - Construction du décodeur (LM=/home/mac/projet-cpm/data/lm_data/lm-data/2-gram.pruned.1e-7.arpa)...
+2026-02-13 17:40:32 | INFO     | __main__:main:226 - Modèle de langage chargé : 2-gram.pruned.1e-7.arpa
+2026-02-13 17:40:32 | INFO     | __main__:main:231 - Scan du dossier /home/mac/projet-cpm/data/corpus/td_corpus_digits_wav...
+2026-02-13 17:40:32 | INFO     | __main__:main:238 - Fichiers trouvés : 2800
+2026-02-13 17:40:32 | INFO     | __main__:main:242 - Démarrage de la transcription...
+2026-02-13 17:43:09 | SUCCESS  | __main__:main:278 - Transcriptions sauvegardées dans /home/mac/projet-cpm/results_detailed.csv
+2026-02-13 17:43:09 | INFO     | __main__:generate_analysis:125 - ===== ANALYSE STATISTIQUE =====
+2026-02-13 17:43:09 | INFO     | __main__:generate_analysis:130 - Analyse 0/4 : Impact du Modèle de Langage
+2026-02-13 17:43:09 | INFO     | evaluation:bootstrap_ci:72 - WER: 17.43% [IC95: 14.60% - 20.45%]
+2026-02-13 17:43:09 | INFO     | evaluation:bootstrap_ci:72 - WER: 16.98% [IC95: 14.08% - 20.07%]
+2026-02-13 17:43:09 | INFO     | __main__:generate_analysis:169 - Analyse 1/4 : Impact du Bruit
+2026-02-13 17:43:09 | INFO     | evaluation:bootstrap_ci:72 - WER: 76.75% [IC95: 72.27% - 80.92%]
+2026-02-13 17:43:09 | INFO     | evaluation:bootstrap_ci:72 - WER: 73.55% [IC95: 68.93% - 77.75%]
+2026-02-13 17:43:09 | INFO     | evaluation:bootstrap_ci:72 - WER: 40.52% [IC95: 36.07% - 45.08%]
+2026-02-13 17:43:09 | INFO     | evaluation:bootstrap_ci:72 - WER: 37.43% [IC95: 32.60% - 41.87%]
+2026-02-13 17:43:09 | INFO     | evaluation:bootstrap_ci:72 - WER: 22.72% [IC95: 19.25% - 26.13%]
+2026-02-13 17:43:09 | INFO     | evaluation:bootstrap_ci:72 - WER: 21.93% [IC95: 18.33% - 25.68%]
+2026-02-13 17:43:09 | INFO     | evaluation:bootstrap_ci:72 - WER: 17.43% [IC95: 14.60% - 20.45%]
+2026-02-13 17:43:09 | INFO     | evaluation:bootstrap_ci:72 - WER: 16.98% [IC95: 14.08% - 20.07%]
+2026-02-13 17:43:10 | SUCCESS  | __main__:plot_with_ci:100 - Graphique généré : /home/mac/projet-cpm/plots/graph1_snr_ci.png
+2026-02-13 17:43:10 | INFO     | __main__:generate_analysis:188 - Analyse 2/4 : Impact du Locuteur
+2026-02-13 17:43:10 | INFO     | evaluation:bootstrap_ci:72 - WER: 32.97% [IC95: 28.60% - 37.05%]
+2026-02-13 17:43:10 | INFO     | evaluation:bootstrap_ci:72 - WER: 29.83% [IC95: 25.35% - 34.12%]
+2026-02-13 17:43:10 | INFO     | evaluation:bootstrap_ci:72 - WER: 37.12% [IC95: 32.88% - 41.92%]
+2026-02-13 17:43:10 | INFO     | evaluation:bootstrap_ci:72 - WER: 34.27% [IC95: 30.23% - 38.98%]
+2026-02-13 17:43:10 | INFO     | evaluation:bootstrap_ci:72 - WER: 17.43% [IC95: 14.60% - 20.45%]
+2026-02-13 17:43:10 | INFO     | evaluation:bootstrap_ci:72 - WER: 16.98% [IC95: 14.08% - 20.07%]
+2026-02-13 17:43:10 | INFO     | evaluation:bootstrap_ci:72 - WER: 17.97% [IC95: 14.66% - 21.63%]
+2026-02-13 17:43:10 | INFO     | evaluation:bootstrap_ci:72 - WER: 17.68% [IC95: 14.02% - 21.47%]
+2026-02-13 17:43:11 | SUCCESS  | __main__:plot_with_ci:100 - Graphique généré : /home/mac/projet-cpm/plots/graph2_speaker_ci.png
+2026-02-13 17:43:11 | INFO     | __main__:generate_analysis:203 - Analyse 3/4 : Impact de la Longueur
+2026-02-13 17:43:11 | INFO     | evaluation:bootstrap_ci:72 - WER: 17.00% [IC95: 13.50% - 20.75%]
+2026-02-13 17:43:11 | INFO     | evaluation:bootstrap_ci:72 - WER: 18.25% [IC95: 14.25% - 22.50%]
+2026-02-13 17:43:11 | INFO     | evaluation:bootstrap_ci:72 - WER: 21.50% [IC95: 17.33% - 25.67%]
+2026-02-13 17:43:11 | INFO     | evaluation:bootstrap_ci:72 - WER: 19.33% [IC95: 15.33% - 23.50%]
+2026-02-13 17:43:11 | INFO     | evaluation:bootstrap_ci:72 - WER: 15.30% [IC95: 12.60% - 18.10%]
+2026-02-13 17:43:11 | INFO     | evaluation:bootstrap_ci:72 - WER: 13.50% [IC95: 10.90% - 16.10%]
+2026-02-13 17:43:11 | SUCCESS  | __main__:plot_with_ci:100 - Graphique généré : /home/mac/projet-cpm/plots/graph3_length_ci.png
+2026-02-13 17:43:11 | SUCCESS  | __main__:generate_analysis:216 - Tous les graphes ont été générés.
