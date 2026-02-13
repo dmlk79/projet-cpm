@@ -5,6 +5,7 @@ Usage: python run_asr.py --corpus data/corpus --use-lm
 """
 import sys
 from pathlib import Path
+
 import argparse
 import time
 from loguru import logger
@@ -14,11 +15,8 @@ import audio_utils
 import model_loader
 import inference
 import evaluation
-
 # Ajouter src/ au PYTHONPATH
 sys.path.insert(0, str(Path(__file__).parent / "src"))
-
-
 
 def parse_args():
     """Parse les arguments de ligne de commande"""
@@ -93,7 +91,7 @@ def main():
     if not args.corpus.exists():
         logger.error(f"Corpus introuvable: {args.corpus}")
         return 1
-    
+   
     # Collecter les fichiers WAV
     try:
         wav_files = audio_utils.collect_wav_files(args.corpus, args.pattern)

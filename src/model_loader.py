@@ -49,4 +49,4 @@ def load_decoder(processor, lm_path=None):
 
 if __name__ == "__main__":
     p, m = load_model()
-    print("✅ Modèle chargé avec succès")
+    print("Modèle chargé avec succès")

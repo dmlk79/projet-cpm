@@ -26,8 +26,8 @@ import evaluation
 
 # === CONFIGURATION DES CHEMINS ===
 # Adaptez ces chemins si votre structure change
-CORPUS_ROOT = config.DATA_DIR / "corpus" / "td_corpus_digits_wav"
-LM_PATH = config.DATA_DIR / "lm_data" / "lm-data" / "2-gram.pruned.1e-7.arpa"
+CORPUS_ROOT = config.PROJECT_ROOT / "td_corpus_digits_wav"
+LM_PATH = config.PROJECT_ROOT / "lm-data" / "2-gram.pruned.1e-7.arpa"
 
 # Sorties
 OUTPUT_CSV = config.PROJECT_ROOT / "results_detailed.csv"
@@ -105,7 +105,7 @@ def generate_analysis(df):
     et génère les 4 graphes demandés.
     """
     PLOTS_DIR.mkdir(exist_ok=True)
-
+    np.random.seed(0)
     def calculate_group_stats(group):
         refs = group['Reference'].tolist()
         hyps_no = group['Hyp_NoLM'].tolist()
@@ -199,12 +199,9 @@ def generate_analysis(df):
     # ============================================================
     logger.info("Analyse 3/4 : Impact de la Longueur")
 
-    df_len = df[
-        (df['SNR'] == 'SNR35dB') &
-        (df['Speaker'].isin(['man', 'woman']))
-    ].groupby('Length') \
-     .apply(calculate_group_stats) \
-     .reset_index()
+    df_len = df[ (df['SNR'] == 'SNR35dB') & (df['Speaker'].isin(['man', 'woman'])) ].groupby('Length') \
+        .apply(calculate_group_stats) \
+        .reset_index()
 
     plot_with_ci(df_len, 'Length',
                  "Impact de la Longueur (SNR35dB, Adultes)",

@@ -6,14 +6,14 @@ from loguru import logger
 
 def compute_wer(references: List[str], hypotheses: List[str]) -> float:
     """
-    Calcule le Word Error Rate (WER)
+    Calcule du Word Error Rate (WER)
     
     Args:
         references: Liste des transcriptions de référence
         hypotheses: Liste des transcriptions prédites
         
     Returns:
-        WER en pourcentage (0-100)
+        WER en pourcentage (0-100%)
     """
     if len(references) != len(hypotheses):
         raise ValueError(f"Mismatch: {len(references)} refs vs {len(hypotheses)} hyps")
@@ -81,7 +81,7 @@ def print_evaluation_results(
     label: str = ""
 ):
     """
-    Affiche les résultats d'évaluation de manière formatée
+    Affichage des résultats d'évaluation
     
     Args:
         wer_value: WER moyen (%)
@@ -122,4 +122,4 @@ def compare_results(
     print("="*70 + "\n")
 
 if __name__ == "__main__":
-    print("✅ evaluation.py - Module d'évaluation WER + bootstrap CI")
+    print("evaluation.py - Module d'évaluation WER + bootstrap CI")

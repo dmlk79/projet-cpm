@@ -36,6 +36,7 @@ def get_device():
         logger.warning("GPU non disponible, utilisation CPU")
         return torch.device("cpu")
 
+
 # Configuration
 DEVICE = get_device()
 PROJECT_ROOT = Path.home() / "projet-cpm"
